@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Church TV Control</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css?v=4"
+    >
+</head>
+
+<body>
+
+<main class="container">
+
+    <section class="panel">
+
+        <h2>Church TV</h2>
+
+        <div class="status-row">
+            <span class="indicator checking">●</span>
+            <span>TV Computer: Starting…</span>
+        </div>
+
+        <div class="status-row">
+            <span class="indicator checking">●</span>
+            <span>OpenLP Stage View: Starting…</span>
+        </div>
+
+    </section>
+
+
+    <section class="panel preview-panel">
+
+        <h2>Live TV Preview</h2>
+
+        <div class="preview-frame">
+            <img
+                id="tv-preview"
+                alt="Live preview of the Church TV screen"
+            >
+
+            <div
+                id="preview-placeholder"
+                class="preview-placeholder"
+            >
+                Preview unavailable
+            </div>
+        </div>
+
+        <div
+            id="preview-updated"
+            class="preview-updated"
+        >
+            Waiting for preview…
+        </div>
+
+    </section>
+
+
+    <section class="panel">
+
+        <h2>TV Control</h2>
+
+        <button
+            id="start-button"
+            class="start"
+        >
+            Start TV
+        </button>
+
+        <button
+            id="shutdown-button"
+            class="danger"
+        >
+            Shut Down TV
+        </button>
+
+    </section>
+
+
+    <section class="panel maintenance">
+
+        <h2>Maintenance</h2>
+
+        <button
+            id="fix-openlp-button"
+        >
+            Fix Corrupt OpenLP Service
+        </button>
+
+    </section>
+
+
+    <div class="feedback">
+        Connecting…
+    </div>
+
+
+    <div class="last-checked">
+        Last checked: —
+    </div>
+
+</main>
+
+
+<script src="app.js?v=4"></script>
+
+</body>
+
+</html>

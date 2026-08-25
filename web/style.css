@@ -1,0 +1,193 @@
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+    padding: 12px;
+
+    font-family: sans-serif;
+    font-size: 15px;
+
+    background: #202020;
+    color: #eeeeee;
+}
+
+
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+
+.panel {
+    margin-bottom: 12px;
+    padding: 12px;
+
+    border: 1px solid #444444;
+    border-radius: 6px;
+
+    background: #292929;
+}
+
+
+.panel h2 {
+    margin: 0 0 10px 0;
+    font-size: 17px;
+}
+
+
+.status-row {
+    display: flex;
+    align-items: center;
+
+    margin: 8px 0;
+}
+
+
+.indicator {
+    width: 28px;
+    margin-right: 8px;
+
+    font-size: 19px;
+    line-height: 1;
+}
+
+
+.indicator.checking {
+    color: #888888;
+}
+
+
+.indicator.ok {
+    color: #55c96f;
+}
+
+
+.indicator.error {
+    color: #e05a5a;
+}
+
+
+button {
+    width: 100%;
+
+    margin: 4px 0;
+    padding: 11px;
+
+    border: 0;
+    border-radius: 5px;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    background: #3d6ea8;
+    color: white;
+
+    cursor: pointer;
+}
+
+
+button:hover {
+    background: #4d7eb8;
+}
+
+
+button:disabled {
+    background: #555555;
+    color: #aaaaaa;
+    cursor: default;
+}
+
+
+button.start {
+    background: #3f8f5f;
+}
+
+
+button.start:hover {
+    background: #4fae72;
+}
+
+
+button.danger {
+    background: #8d3838;
+}
+
+
+button.danger:hover {
+    background: #a84848;
+}
+
+
+.preview-frame {
+    position: relative;
+
+    width: 100%;
+    min-height: 120px;
+
+    background: #111111;
+    border-radius: 4px;
+
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#tv-preview {
+    display: none;
+
+    width: 100%;
+    height: auto;
+
+    max-height: 280px;
+
+    object-fit: contain;
+}
+
+
+.preview-placeholder {
+    padding: 40px 10px;
+
+    color: #888888;
+    text-align: center;
+}
+
+
+.preview-updated {
+    margin-top: 6px;
+
+    color: #888888;
+    font-size: 12px;
+
+    text-align: right;
+}
+
+
+.maintenance {
+    margin-top: 4px;
+}
+
+
+.feedback {
+    margin-top: 8px;
+    padding: 6px;
+
+    min-height: 22px;
+
+    color: #dddddd;
+
+    text-align: center;
+}
+
+
+.last-checked {
+    color: #777777;
+    font-size: 12px;
+
+    text-align: center;
+}
