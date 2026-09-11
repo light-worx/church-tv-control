@@ -12,6 +12,7 @@ const previewUrl = API_BASE + "/api/preview";
 
 const startUrl = API_BASE + "/api/start";
 const shutdownUrl = API_BASE + "/api/shutdown";
+const resetHDMIUrl = API_BASE + "/api/reset-hdmi";
 const fixOpenLPUrl = API_BASE + "/api/fix-openlp";
 
 
@@ -29,6 +30,7 @@ const lastChecked = document.querySelector(".last-checked");
 
 const startButton = document.getElementById("start-button");
 const shutdownButton = document.getElementById("shutdown-button");
+const resetHDMIButton = document.getElementById("reset-hdmi-button");
 const fixOpenLPButton = document.getElementById("fix-openlp-button");
 
 const previewImage = document.getElementById("tv-preview");
@@ -137,6 +139,7 @@ function setButtonsEnabled(enabled) {
 
     startButton.disabled = !enabled;
     shutdownButton.disabled = !enabled;
+    resetHDMIButton.disabled = !enabled;
     fixOpenLPButton.disabled = !enabled;
 }
 
@@ -652,6 +655,29 @@ shutdownButton.addEventListener(
     }
 );
 
+resetHDMIButton.addEventListener(
+    "click",
+    function () {
+
+        const confirmed = window.confirm(
+            "Refresh the TV display?\n\n" +
+            "The TV screen will briefly go blank while " +
+            "the HDMI connection is reset."
+        );
+
+
+        if (!confirmed) {
+            return;
+        }
+
+
+        performAction(
+            resetHDMIUrl,
+            "Refreshing TV display…",
+            "TV display has been refreshed."
+        );
+    }
+);
 
 fixOpenLPButton.addEventListener(
     "click",

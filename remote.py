@@ -33,6 +33,10 @@ class RemoteBackend(ABC):
     def get_screenshot(self) -> bytes:
         raise NotImplementedError
 
+    @abstractmethod
+    def reset_hdmi(self):
+        raise NotImplementedError
+
 
 class SSHRemoteBackend(RemoteBackend):
     """
@@ -172,6 +176,9 @@ class SSHRemoteBackend(RemoteBackend):
 
     def reboot(self) -> str:
         return self._run("reboot")
+
+    def reset_hdmi(self):
+        return self._run("reset-hdmi")
 
     def shutdown(self) -> str:
         return self._run("shutdown")

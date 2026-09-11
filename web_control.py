@@ -59,19 +59,23 @@ class ChurchTVRequestHandler(http.server.SimpleHTTPRequestHandler):
 
         super().do_GET()
 
-    def do_POST(self):
-        if self.path == "/api/start":
-            self.handle_start()
-            return
+        def do_POST(self):
+            if self.path == "/api/start":
+                self.handle_start()
+                return
 
-        if self.path == "/api/shutdown":
-            self.handle_shutdown()
-            return
+            if self.path == "/api/shutdown":
+                self.handle_shutdown()
+                return
 
-        if self.path == "/api/fix-openlp":
-            self.handle_fix_openlp()
-            return
+            if self.path == "/api/reset-hdmi":
+                self.handle_reset_hdmi()
+                return
 
+            if self.path == "/api/fix-openlp":
+                self.handle_fix_openlp()
+                return
+            
         self.send_json(
             {
                 "success": False,
@@ -205,6 +209,26 @@ class ChurchTVRequestHandler(http.server.SimpleHTTPRequestHandler):
                         message
                         or "TV computer is shutting down."
                     ),
+                }
+            )
+
+        except Exception as exc:
+            self.send_json(
+                {
+                    "success": False,
+                    "message": str(exc),
+                },
+                status=500,
+            )
+
+    def handle_reset_hdmi(self):
+        try:
+            message = tv_backend.reset_hdmi()
+
+            self.send_json(
+                {
+                    "success": True,
+                    "message": message or "TV display refreshed.",
                 }
             )
 
