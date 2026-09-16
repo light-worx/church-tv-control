@@ -10,7 +10,6 @@ import threading
 from remote import SSHRemoteBackend
 from openlp import OpenLPBackend
 
-
 HOST = "127.0.0.1"
 PORT = 8765
 
@@ -20,7 +19,6 @@ tv_backend = SSHRemoteBackend()
 openlp_backend = OpenLPBackend()
 
 preview_lock = threading.Lock()
-
 
 class ChurchTVRequestHandler(http.server.SimpleHTTPRequestHandler):
     """HTTP server for the Church TV Control web interface."""
@@ -59,23 +57,25 @@ class ChurchTVRequestHandler(http.server.SimpleHTTPRequestHandler):
 
         super().do_GET()
 
-        def do_POST(self):
-            if self.path == "/api/start":
-                self.handle_start()
-                return
+    def do_POST(self):
+        path = urlparse(self.path).path
 
-            if self.path == "/api/shutdown":
-                self.handle_shutdown()
-                return
+        if path == "/api/start":
+            self.handle_start()
+            return
 
-            if self.path == "/api/reset-hdmi":
-                self.handle_reset_hdmi()
-                return
+        if path == "/api/shutdown":
+            self.handle_shutdown()
+            return
 
-            if self.path == "/api/fix-openlp":
-                self.handle_fix_openlp()
-                return
-            
+        if path == "/api/reset-hdmi":
+            self.handle_reset_hdmi()
+            return
+
+        if path == "/api/fix-openlp":
+            self.handle_fix_openlp()
+            return
+
         self.send_json(
             {
                 "success": False,
@@ -265,12 +265,11 @@ class ChurchTVRequestHandler(http.server.SimpleHTTPRequestHandler):
 class ReusableTCPServer(socketserver.ThreadingTCPServer):
     allow_reuse_address = True
 
-
-def main():
-    if not WEB_DIR.exists():
-        raise RuntimeError(
-            f"Web directory does not exist: {WEB_DIR}"
-        )
+    def main():
+        if not WEB_DIR.exists():
+            raise RuntimeError(
+                f"Web directory does not exist: {WEB_DIR}"
+            )
 
     server = ReusableTCPServer(
         (HOST, PORT),
@@ -290,7 +289,6 @@ def main():
 
     finally:
         server.server_close()
-
 
 if __name__ == "__main__":
     main()
