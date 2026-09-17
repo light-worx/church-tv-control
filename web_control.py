@@ -265,30 +265,30 @@ class ChurchTVRequestHandler(http.server.SimpleHTTPRequestHandler):
 class ReusableTCPServer(socketserver.ThreadingTCPServer):
     allow_reuse_address = True
 
-    def main():
-        if not WEB_DIR.exists():
-            raise RuntimeError(
-                f"Web directory does not exist: {WEB_DIR}"
-            )
+def main():
+    if not WEB_DIR.exists():
+        raise RuntimeError(
+            f"Web directory does not exist: {WEB_DIR}"
+        )
 
-    server = ReusableTCPServer(
-        (HOST, PORT),
-        ChurchTVRequestHandler,
-    )
+server = ReusableTCPServer(
+    (HOST, PORT),
+    ChurchTVRequestHandler,
+)
 
-    print(
-        "Church TV Control web interface running at:"
-    )
-    print(f"http://{HOST}:{PORT}")
+print(
+    "Church TV Control web interface running at:"
+)
+print(f"http://{HOST}:{PORT}")
 
-    try:
-        server.serve_forever()
+try:
+    server.serve_forever()
 
-    except KeyboardInterrupt:
-        print("\nStopping web server...")
+except KeyboardInterrupt:
+    print("\nStopping web server...")
 
-    finally:
-        server.server_close()
+finally:
+    server.server_close()
 
 if __name__ == "__main__":
     main()

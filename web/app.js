@@ -716,17 +716,11 @@ refreshPreview();
    Poll status every 10 seconds
    -------------------------------------------------------------- */
 
-setInterval(
-    refreshStatus,
-    10000
-);
+setInterval(refreshStatus, 10000);
 
 
 /* --------------------------------------------------------------
    Refresh preview every 5 seconds
    -------------------------------------------------------------- */
 
-setInterval(
-    refreshPreview,
-    5000
-);
+   setInterval(refreshPreview, 5000);
